@@ -10,9 +10,9 @@ export default function LoginPage() {
   const [error, setError] = useState('')
   const router = useRouter()
 
-  // 7个固定用户选项
+  // 7个固定用户列表
   const users = [
-    { value: 'hanbin', label: '汉斌' },
+    { value: 'hanbin', label: '汉斌（管理员）' },
     { value: 'hanpeng', label: '汉鹏' },
     { value: 'hanlong', label: '汉龙' },
     { value: 'hanyang', label: '汉阳' },
@@ -30,16 +30,16 @@ export default function LoginPage() {
       await login(username, password)
       router.push('/dashboard')
     } catch (err: any) {
-      setError(err.response?.data?.error || '登录失败，请重试')
+      setError(err.response?.data?.error || '登录失败，请检查账号密码')
     } finally {
       setLoading(false)
     }
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-blue-500/5">
-      <div className="w-full max-w-md bg-white/90 backdrop-blur-lg rounded-lg shadow-xl p-8 border border-blue-400/20">
-        <h1 className="text-2xl font-bold text-center text-blue-600 mb-8">电商记账系统</h1>
+    <div className="flex items-center justify-center min-h-screen px-4">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-xl p-8 border border-blue-200">
+        <h1 className="text-2xl font-bold text-center text-blue-600 mb-8">7人电商记账系统</h1>
         
         {error && (
           <div className="bg-red-100 text-red-600 p-3 rounded mb-4 text-center">
@@ -47,16 +47,16 @@ export default function LoginPage() {
           </div>
         )}
 
-        <form onSubmit={handleLogin} className="space-y-4">
+        <form onSubmit={handleLogin} className="space-y-5">
           <div>
-            <label className="block text-blue-700 mb-2">选择账号</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">选择登录账号</label>
             <select
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-4 py-2 rounded-lg border border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               required
             >
-              <option value="">请选择登录账号</option>
+              <option value="">请选择账号</option>
               {users.map((user) => (
                 <option key={user.value} value={user.value}>
                   {user.label}
@@ -66,13 +66,13 @@ export default function LoginPage() {
           </div>
 
           <div>
-            <label className="block text-blue-700 mb-2">密码</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">密码</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="初始密码：123456"
-              className="w-full px-4 py-2 rounded-lg border border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               required
             />
           </div>
@@ -80,14 +80,14 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-400 transition-colors disabled:bg-gray-400"
+            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-500 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
-            {loading ? '登录中...' : '登录'}
+            {loading ? '登录中...' : '登录系统'}
           </button>
         </form>
 
         <div className="mt-6 text-center text-sm text-gray-500">
-          初始密码统一为：123456，登录后可自行修改（扩展功能）
+          初始密码统一为：123456 | 登录后可修改密码（扩展功能）
         </div>
       </div>
     </div>

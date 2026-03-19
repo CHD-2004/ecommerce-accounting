@@ -15,5 +15,5 @@ export default function Home() {
     }
   }, [router])
 
-  return <div>正在跳转...</div>
+  return <div className="flex items-center justify-center min-h-screen">正在跳转...</div>
 }

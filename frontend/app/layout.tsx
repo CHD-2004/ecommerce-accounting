@@ -5,8 +5,8 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: '电商记账系统',
-  description: '7人多端电商收支记账系统',
+  title: '7人电商记账系统',
+  description: '多人多端电商收支记账管理系统',
 }
 
 export default function RootLayout({
@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-CN">
-      <body className={`${inter.className} bg-white/80 backdrop-blur-md min-h-screen`}>{children}</body>
+      <body className={`${inter.className} min-h-screen bg-blue-50`}>{children}</body>
     </html>
   )
 }
